@@ -3,6 +3,7 @@ import { View, Text, TextInput, TouchableOpacity } from "react-native";
 import { useForm, Controller } from "react-hook-form";
 import { MaterialIcons } from "@expo/vector-icons";
 import styles from "./styles";
+import { useAuth } from "../../context/AuthContext";
 
 // Regex để validate password: yêu cầu có ít nhất 1 chữ hoa, 1 chữ thường, 1 số, 1 ký tự đặc biệt (!@#$%^&*)
 // Và email theo định dạng thông thường.
@@ -14,6 +15,8 @@ export default function LoginScreen({ navigation }) {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [message, setMessage] = useState(null);
   const [messageType, setMessageType] = useState(null);
+  const { login } = useAuth();
+  
   const {
     control,
     handleSubmit,
@@ -33,15 +36,14 @@ export default function LoginScreen({ navigation }) {
       setMessageType("success");
       setTimeout(() => {
         setMessage(null);
-        navigation.navigate("Home");
+        // Gọi hàm login từ context để cập nhật trạng thái đăng nhập
+        login();
       }, 2000);
     } else {
       setMessage("Email hoặc mật khẩu không đúng!");
       setMessageType("error");
       setTimeout(() => setMessage(null), 3000);
     }
-    // // Sau khi login thành công, điều hướng sang Home
-    // navigation.navigate('Home');
   };
 
   return (
