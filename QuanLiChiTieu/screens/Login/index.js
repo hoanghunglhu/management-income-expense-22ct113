@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { View, Text, TextInput, TouchableOpacity } from "react-native";
 import { useForm, Controller } from "react-hook-form";
 import { MaterialIcons } from "@expo/vector-icons";
@@ -16,6 +16,13 @@ export default function LoginScreen({ navigation }) {
   const [message, setMessage] = useState(null);
   const [messageType, setMessageType] = useState(null);
   const { login } = useAuth();
+   //focus email
+   const emailInputRef = useRef(null);
+   useEffect(() => {
+     if (emailInputRef.current) {
+       emailInputRef.current.focus();
+     }
+   }, []);
   
   const {
     control,
