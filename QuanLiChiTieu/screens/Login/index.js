@@ -3,9 +3,9 @@ import { View, Text, TextInput, TouchableOpacity } from "react-native";
 import { useForm, Controller } from "react-hook-form";
 import { MaterialIcons } from "@expo/vector-icons";
 import styles from "./styles";
+import { useAuth } from "../../context/AuthContext"; // Thêm import từ nhánh main
 
-// Regex để validate password: yêu cầu có ít nhất 1 chữ hoa, 1 chữ thường, 1 số, 1 ký tự đặc biệt (!@#$%^&*)
-// Và email theo định dạng thông thường.
+// Regex để validate password và email
 const PASSWORD_REGEX =
   /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*]).{8,255}$/;
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -14,6 +14,8 @@ export default function LoginScreen({ navigation }) {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [message, setMessage] = useState(null);
   const [messageType, setMessageType] = useState(null);
+  const { login } = useAuth(); // Lấy hàm login từ AuthContext
+
   const {
     control,
     handleSubmit,
@@ -27,12 +29,14 @@ export default function LoginScreen({ navigation }) {
 
   const onSubmit = (data) => {
     // Kiểm tra dữ liệu sau khi validate thành công
-
     if (data.email === "example@gmail.com" && data.password === "Example@123") {
       setMessage("Đăng nhập thành công!");
       setMessageType("success");
       setTimeout(() => {
         setMessage(null);
+        // Gọi hàm login từ context để cập nhật trạng thái đăng nhập
+        login();
+        // Điều hướng đến màn hình Home
         navigation.navigate("Home");
       }, 2000);
     } else {
@@ -40,8 +44,6 @@ export default function LoginScreen({ navigation }) {
       setMessageType("error");
       setTimeout(() => setMessage(null), 3000);
     }
-    // // Sau khi login thành công, điều hướng sang Home
-    // navigation.navigate('Home');
   };
 
   return (
@@ -49,7 +51,12 @@ export default function LoginScreen({ navigation }) {
       <Text style={styles.title}>Đăng Nhập</Text>
 
       {message && (
-        <View style={[styles.messageBox, messageType === 'error' ? styles.errorBox : styles.successBox]}>
+        <View
+          style={[
+            styles.messageBox,
+            messageType === "error" ? styles.errorBox : styles.successBox,
+          ]}
+        >
           <Text style={styles.messageText}>{message}</Text>
         </View>
       )}
@@ -127,7 +134,10 @@ export default function LoginScreen({ navigation }) {
       )}
 
       {/* Button Đăng nhập */}
-      <TouchableOpacity style={styles.button} onPress={handleSubmit(onSubmit)}>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={handleSubmit(onSubmit)}
+      >
         <Text style={styles.buttonText}>Đăng Nhập</Text>
       </TouchableOpacity>
     </View>
