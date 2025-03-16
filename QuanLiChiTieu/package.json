@@ -17,6 +17,7 @@
     "@react-navigation/stack": "^7.1.2",
     "expo": "~52.0.37",
     "expo-status-bar": "~2.0.1",
+    "quanlichitieu": "file:",
     "react": "18.3.1",
     "react-hook-form": "^7.54.2",
     "react-native": "0.76.7",
