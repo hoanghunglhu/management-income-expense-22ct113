@@ -5,6 +5,7 @@ import { ActivityIndicator, View } from 'react-native';
 
 import LoginScreen from './screens/Login';
 import HomeScreen from './screens/Home';
+import ExpensesScreen from './screens/Expenses';
 import { AuthProvider, useAuth } from './context/AuthContext';
 
 const Stack = createNativeStackNavigator();
@@ -31,11 +32,18 @@ function AppNavigator() {
             options={{ headerShown: false }}
           />
         ) : (
-          <Stack.Screen 
-            name="Home" 
-            component={HomeScreen} 
-            options={{ headerShown: false }}
-          />
+          <>
+            <Stack.Screen 
+              name="Home" 
+              component={HomeScreen} 
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen 
+              name="Expenses" 
+              component={ExpensesScreen} 
+              options={{ title: 'Chi Tiêu' }}
+            />
+          </>
         )}
       </Stack.Navigator>
     </NavigationContainer>
