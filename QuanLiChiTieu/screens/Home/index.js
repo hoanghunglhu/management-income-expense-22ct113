@@ -5,16 +5,23 @@ import { useAuth } from '../../context/AuthContext';
 
 export default function HomeScreen({ navigation }) {
   const { logout } = useAuth();
-  
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Trang Home</Text>
       {/* Nút đăng xuất: sử dụng hàm logout từ context */}
-      <TouchableOpacity 
+      <TouchableOpacity
         style={styles.button}
         onPress={logout}
       >
         <Text style={styles.buttonText}>Đăng xuất</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => navigation.navigate("IncomeCategory")}
+      >
+        <Text style={styles.buttonText}>Thu</Text>
       </TouchableOpacity>
     </View>
   );
