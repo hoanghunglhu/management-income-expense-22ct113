@@ -5,7 +5,7 @@ import { ActivityIndicator, View } from 'react-native';
 
 import LoginScreen from './screens/Login';
 import HomeScreen from './screens/Home';
-import ExpenseCategoriesScreen from './screens/ExpenseCategories';
+import ExpenseCategoriesScreen from './screens/ExpenseCategories/ExpenseCategoryScreen';
 import { AuthProvider, useAuth } from './context/AuthContext';
 
 const Stack = createNativeStackNavigator();
