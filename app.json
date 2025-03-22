@@ -1,0 +1,41 @@
+{
+    "expo": {
+      "name": "Quản Lý Thu Chi",
+      "slug": "quan-ly-thu-chi",
+      "version": "1.0.0",
+      "orientation": "portrait",
+      "icon": "./assets/icon.png",
+      "userInterfaceStyle": "light",
+      "splash": {
+        "image": "./assets/splash.png",
+        "resizeMode": "contain",
+        "backgroundColor": "#00A86B"
+      },
+      "updates": {
+        "fallbackToCacheTimeout": 0
+      },
+      "assetBundlePatterns": ["**/*"],
+      "ios": {
+        "supportsTablet": true,
+        "bundleIdentifier": "com.yourcompany.quanlythuchi"
+      },
+      "android": {
+        "adaptiveIcon": {
+          "foregroundImage": "./assets/adaptive-icon.png",
+          "backgroundColor": "#00A86B"
+        },
+        "package": "com.yourcompany.quanlythuchi",
+        "permissions": ["WRITE_EXTERNAL_STORAGE", "READ_EXTERNAL_STORAGE"]
+      },
+      "web": {
+        "favicon": "./assets/favicon.png"
+      },
+      "description": "Ứng dụng quản lý thu chi cá nhân đơn giản và hiệu quả",
+      "primaryColor": "#00A86B",
+      "backgroundColor": "#FFFFFF",
+      "extra": {
+        "apiUrl": "https://api.quanlythuchi.com"
+      },
+      "scheme": "quanlythuchi"
+    }
+  }
