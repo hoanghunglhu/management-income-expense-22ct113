@@ -4,7 +4,6 @@ import { StyleSheet, View, Text, Modal, TextInput, TouchableOpacity } from 'reac
 const AddEditCategoryModal = ({ visible, onClose, onSave, initialData }) => {
   const [name, setName] = useState(initialData?.name || '');
   const [description, setDescription] = useState(initialData?.description || '');
-
   const handleSave = () => {
     if (!name.trim()) {
       // Có thể thêm thông báo lỗi ở đây
@@ -15,7 +14,6 @@ const AddEditCategoryModal = ({ visible, onClose, onSave, initialData }) => {
     setDescription('');
     onClose();
   };
-
   return (
     <Modal
       visible={visible}

@@ -77,6 +77,29 @@ const ExpenseCategoryScreen = () => {
     }
   };
 
+  const handleDeleteCategory = () => {
+    Alert.alert(
+      'Xác nhận xóa',
+      'Bạn có chắc chắn muốn xóa danh mục này?',
+      [
+        {
+          text: 'Hủy',
+          style: 'cancel',
+        },
+        {
+          text: 'Xóa',
+          onPress: () => {
+            setCategories(categories.filter(cat => cat.id !== selectedCategory.id));
+            setModalVisible(false);
+            Alert.alert('Thành công', 'Đã xóa danh mục thành công');
+          },
+          style: 'destructive',
+        },
+      ],
+      { cancelable: false }
+    );
+  };
+
   const renderCategoryItem = ({ item }) => (
     <TouchableOpacity 
       style={styles.categoryItem}
@@ -154,6 +177,13 @@ const ExpenseCategoryScreen = () => {
                     onPress={handleEditCategory}
                   >
                     <Text style={styles.textStyle}>Chỉnh sửa</Text>
+                  </Pressable>
+                  
+                  <Pressable
+                    style={[styles.button, styles.buttonDelete]}
+                    onPress={handleDeleteCategory}
+                  >
+                    <Text style={styles.textStyle}>Xóa</Text>
                   </Pressable>
                   
                   <Pressable
@@ -313,6 +343,9 @@ const styles = StyleSheet.create({
   },
   buttonEdit: {
     backgroundColor: '#FF9800',
+  },
+  buttonDelete: {
+    backgroundColor: '#DC3545',
   },
   buttonClose: {
     backgroundColor: '#3F51B5',
