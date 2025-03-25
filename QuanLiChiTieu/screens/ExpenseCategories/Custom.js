@@ -1,19 +1,29 @@
-import React, { useState } from 'react';
-import { StyleSheet, View, Text, Modal, TextInput, TouchableOpacity } from 'react-native';
+import React, { useState, useEffect, useCallback } from 'react';
+import { StyleSheet, View, Text, Modal, TextInput, TouchableOpacity, Alert } from 'react-native';
 
 const AddEditCategoryModal = ({ visible, onClose, onSave, initialData }) => {
-  const [name, setName] = useState(initialData?.name || '');
-  const [description, setDescription] = useState(initialData?.description || '');
-  const handleSave = () => {
+  const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
+
+  useEffect(() => {
+    if (initialData) {
+      setName(initialData.name);
+      setDescription(initialData.description);
+    } else {
+      setName('');
+      setDescription('');
+    }
+  }, [initialData]);
+
+  const handleSave = useCallback(() => {
     if (!name.trim()) {
-      // Có thể thêm thông báo lỗi ở đây
+      Alert.alert('Lỗi', 'Vui lòng nhập tên nhóm phân loại');
       return;
     }
     onSave({ name, description });
-    setName('');
-    setDescription('');
     onClose();
-  };
+  }, [name, description, onSave, onClose]);
+
   return (
     <Modal
       visible={visible}
