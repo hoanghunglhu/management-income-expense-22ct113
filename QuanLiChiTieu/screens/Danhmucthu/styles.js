@@ -100,6 +100,7 @@ export default StyleSheet.create({
         color: "#fff",
         fontSize: 12,
     },
+
     modalContainer: {
         flex: 1,
         justifyContent: "center",
@@ -126,15 +127,14 @@ export default StyleSheet.create({
         borderRadius: 5,
         marginBottom: 10,
     },
-    // Style cho phần mô tả theo thiết kế trong hình:
     inputDescription: {
-        height: 100,           // Chiều cao lớn hơn để hiển thị nhiều dòng
+        height: 100,          
         borderWidth: 1,
         borderColor: "#ccc",
         padding: 10,
         borderRadius: 5,
         marginBottom: 10,
-        textAlignVertical: "top", // Đảm bảo văn bản bắt đầu từ đầu khung input
+        textAlignVertical: "top", 
     },
     buttonContainer: {
         flexDirection: "row",
@@ -161,5 +161,15 @@ export default StyleSheet.create({
     buttonText: {
         color: "white",
         fontWeight: "bold",
+    },
+    modalOverlay: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: "rgba(0,0,0,0.5)", 
+    },
+    dropdownContainer: {
+        width: "100%",
+        marginBottom: 10, 
     },
 });

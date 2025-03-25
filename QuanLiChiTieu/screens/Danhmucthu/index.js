@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { View, Text, TouchableOpacity, Image } from "react-native";
 import styles from "./styles";
 import AddCategoryModal from "./FormThemDuLieu"; // Import modal
+import EditCategoryModal from "./FormSuaDuLieu";
 
 const initialCategories = [
     { id: 1, name: "Tiền lương", icon: require("../../assets/tienluong.png"), description: "Thu nhập từ lương cố định hàng tháng" },
@@ -13,6 +14,19 @@ const initialCategories = [
 export default function IncomeCategoryScreen({ navigation }) {
     const [categories, setCategories] = useState(initialCategories);
     const [modalVisible, setModalVisible] = useState(false);
+    const [editModalVisible, setEditModalVisible] = useState(false);
+    const [selectedCategory, setSelectedCategory] = useState(null);
+
+    const openEditModal = (category) => {
+        setSelectedCategory(category);
+        setEditModalVisible(true);
+    };
+
+    const updateCategory = (id, newDescription) => {
+        setCategories(categories.map(cat =>
+            cat.id === id ? { ...cat, description: newDescription } : cat
+        ));
+    };
 
     const addCategory = (name) => {
         const newId = categories.length + 1;
@@ -26,7 +40,7 @@ export default function IncomeCategoryScreen({ navigation }) {
             <Text style={styles.title}>Thu nhập</Text>
             <View style={styles.grid}>
                 {categories.map((item) => (
-                    <TouchableOpacity key={item.id} style={styles.categoryItem}>
+                    <TouchableOpacity key={item.id} style={styles.categoryItem} onLongPress={() => openEditModal(item)}>
                         <Image source={item.icon} style={styles.icon} />
                         <Text style={styles.categoryText}>{item.name}</Text>
                     </TouchableOpacity>
@@ -41,6 +55,13 @@ export default function IncomeCategoryScreen({ navigation }) {
                 visible={modalVisible}
                 onClose={() => setModalVisible(false)}
                 onAdd={addCategory}
+            />
+
+            <EditCategoryModal
+                visible={editModalVisible}
+                onClose={() => setEditModalVisible(false)}
+                categories={categories}
+                onSave={updateCategory}
             />
         </View>
     );
