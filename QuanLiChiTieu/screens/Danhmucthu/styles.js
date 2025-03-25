@@ -100,4 +100,66 @@ export default StyleSheet.create({
         color: "#fff",
         fontSize: 12,
     },
+    modalContainer: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: "rgba(0,0,0,0.5)",
+    },
+    modalContent: {
+        width: 320,
+        padding: 20,
+        backgroundColor: "white",
+        borderRadius: 10,
+        alignItems: "center",
+    },
+    modalTitle: {
+        fontSize: 18,
+        fontWeight: "bold",
+        marginBottom: 15,
+    },
+    input: {
+        width: "100%",
+        borderWidth: 1,
+        borderColor: "#ccc",
+        padding: 10,
+        borderRadius: 5,
+        marginBottom: 10,
+    },
+    // Style cho phần mô tả theo thiết kế trong hình:
+    inputDescription: {
+        height: 100,           // Chiều cao lớn hơn để hiển thị nhiều dòng
+        borderWidth: 1,
+        borderColor: "#ccc",
+        padding: 10,
+        borderRadius: 5,
+        marginBottom: 10,
+        textAlignVertical: "top", // Đảm bảo văn bản bắt đầu từ đầu khung input
+    },
+    buttonContainer: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        width: "100%",
+        marginTop: 10,
+    },
+    cancelButton: {
+        flex: 1,
+        backgroundColor: "red",
+        padding: 12,
+        borderRadius: 5,
+        alignItems: "center",
+        marginRight: 5,
+    },
+    saveButton: {
+        flex: 1,
+        backgroundColor: "blue",
+        padding: 12,
+        borderRadius: 5,
+        alignItems: "center",
+        marginLeft: 5,
+    },
+    buttonText: {
+        color: "white",
+        fontWeight: "bold",
+    },
 });
