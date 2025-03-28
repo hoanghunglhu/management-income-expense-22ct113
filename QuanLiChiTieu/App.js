@@ -5,6 +5,7 @@ import { ActivityIndicator, View } from 'react-native';
 
 import LoginScreen from './screens/Login';
 import HomeScreen from './screens/Home';
+import ProfileScreen from './screens/Profile/ProfileScreen';
 import { AuthProvider, useAuth } from './context/AuthContext';
 
 const Stack = createNativeStackNavigator();
@@ -31,11 +32,18 @@ function AppNavigator() {
             options={{ headerShown: false }}
           />
         ) : (
-          <Stack.Screen 
-            name="Home" 
-            component={HomeScreen} 
-            options={{ headerShown: false }}
-          />
+          <>
+            <Stack.Screen 
+              name="Home" 
+              component={HomeScreen} 
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen 
+              name="Profile" 
+              component={ProfileScreen} 
+              options={{ title: 'Thông Tin Cá Nhân' }}
+            />
+          </>
         )}
       </Stack.Navigator>
     </NavigationContainer>

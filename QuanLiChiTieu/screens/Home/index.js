@@ -10,9 +10,13 @@ export default function HomeScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Trang Home</Text>
-      {/* Nút đăng xuất: sử dụng hàm logout từ context */}
       <ExpenseSummary />
-
+      <TouchableOpacity 
+        style={styles.button}
+        onPress={() => navigation.navigate('Profile')}
+      >
+        <Text style={styles.buttonText}>Thông Tin Cá Nhân</Text>
+      </TouchableOpacity>
       <TouchableOpacity 
         style={styles.button}
         onPress={logout}
