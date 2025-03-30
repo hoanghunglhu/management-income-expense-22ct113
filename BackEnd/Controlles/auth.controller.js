@@ -87,6 +87,25 @@ exports.login = async (req, res) => {
         });
     }
 };
+
+// @desc    Logout user
+// @route   POST /api/auth/logout
+// @access  Private
+exports.logout = async (req, res) => {
+    try {
+        res.status(200).json({
+            success: true,
+            message: 'Logged out successfully',
+            token: null
+        });
+    } catch (err) {
+        res.status(500).json({
+            success: false,
+            message: 'Logout failed'
+        });
+    }
+};
+
 // @desc    Get current logged in user
 // @route   GET /api/auth/me
 // @access  Private
