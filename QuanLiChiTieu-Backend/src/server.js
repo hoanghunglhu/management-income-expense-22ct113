@@ -3,6 +3,9 @@ const cors = require("cors");
 require("dotenv").config();
 const connectDB = require("../config/db");
 
+// Import routes here
+const expenseRoutes = require("./routes/expensesRoutes");
+
 // Kết nối MongoDB trước khi chạy server
 connectDB();
 
@@ -11,6 +14,9 @@ const app = express();
 // Middleware
 app.use(express.json());
 app.use(cors());
+
+// Thêm route cho API 
+app.use("/api", expenseRoutes);
 
 // Route mặc định
 app.get("/", (req, res) => {
