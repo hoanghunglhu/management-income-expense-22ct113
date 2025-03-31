@@ -1,12 +1,18 @@
 const User = require('../models/User');
 
-const getUsers = async (req, res) => {
+async function deleteUserById(req, res) {
     try {
-        const users = await User.find();
-        res.json(users);
-    } catch (error) {
-        res.status(500).json({ message: error.message });
-    }
-};
+        const { id } = req.params;
+        const deletedUser = await User.findByIdAndDelete(id);
+        
+        if (!deletedUser) {
+            return res.status(404).json({ message: 'User không tồn tại' });
+        }
 
-module.exports = { getUsers };
+        res.json({ success: true, message: 'User đã bị xóa', user: deletedUser });
+    } catch (error) {
+        res.status(500).json({ success: false, message: error.message });
+    }
+}
+
+module.exports = { deleteUserById };
