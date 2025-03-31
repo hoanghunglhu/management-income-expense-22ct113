@@ -2,7 +2,8 @@ const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
 const connectDB = require("../config/db");
-const userRoutes = require('./routes/userRoutes');
+const userRoutes = require('./routes/userRoutes'); // Import user routes
+const incomeRoutes = require('./routes/incomeRoutes'); // Import income routes
 
 // Kết nối MongoDB trước khi chạy server
 connectDB();
@@ -19,6 +20,7 @@ app.get("/", (req, res) => {
 });
 
 app.use('/api/users', userRoutes);
+app.use('/api/incomes', incomeRoutes);
 
 // Khởi chạy server
 const PORT = process.env.PORT || 5000;
