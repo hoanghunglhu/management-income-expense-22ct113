@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
 const connectDB = require("../config/db");
+const userRoutes = require('./routes/userRoutes');
 
 // Kết nối MongoDB trước khi chạy server
 connectDB();
@@ -16,6 +17,8 @@ app.use(cors());
 app.get("/", (req, res) => {
     res.send("API QuanLiChiTieu đang chạy...");
 });
+
+app.use('/api/users', userRoutes);
 
 // Khởi chạy server
 const PORT = process.env.PORT || 5000;
