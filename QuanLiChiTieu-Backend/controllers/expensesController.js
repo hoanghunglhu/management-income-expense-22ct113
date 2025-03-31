@@ -12,3 +12,22 @@ exports.filterExpensesByName = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+
+// Cập nhật expense theo ID
+exports.updateExpenseById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const updatedExpense = await Expense.findByIdAndUpdate(id, req.body, {
+      new: true, // Return the updated document
+      runValidators: true, // Validate the update operation
+    });
+
+    if (!updatedExpense) {
+      return res.status(404).json({ message: "Expense not found" });
+    }
+
+    res.status(200).json(updatedExpense);
+  } catch (error) {
+    res.status(500).json({ message: "Error updating expense", error: error.message });
+  }
+};
