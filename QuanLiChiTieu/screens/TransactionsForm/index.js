@@ -1,5 +1,6 @@
+// TransactionForm.js
 import React, { useState } from "react";
-import { View, Text, TextInput, TouchableOpacity, Picker } from "react-native";
+import { View, Text, TextInput, TouchableOpacity } from "react-native";
 import { FaRegCalendarAlt } from "react-icons/fa";
 import styles from "./TransactionStyles";
 
@@ -12,9 +13,29 @@ export default function TransactionForm({ navigation }) {
     date: "",
   });
 
-  const handleSave = () => {
-    console.log("Giao dịch đã lưu:", transaction);
-    navigation.goBack(); 
+  const handleSave = async () => {
+    try {
+      const response = await fetch("https://api.example.com/transactions", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ...transaction,
+          amount: transaction.amount.includes("-")
+            ? transaction.amount
+            : `+${transaction.amount} đ`, // Định dạng amount
+        }),
+      });
+      if (response.ok) {
+        console.log("Giao dịch đã lưu:", transaction);
+        navigation.goBack();
+      } else {
+        console.error("Lỗi khi lưu giao dịch");
+      }
+    } catch (error) {
+      console.error("Lỗi khi gửi API:", error);
+    }
   };
 
   return (
