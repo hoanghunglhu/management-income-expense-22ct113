@@ -28,4 +28,41 @@ exports.getIncomes = async (req, res) => {
       error: error.message
     });
   }
+};
+
+// Delete income by ID
+exports.deleteIncome = async (req, res) => {
+  try {
+    const { id } = req.params;
+    
+    // Validate ID
+    if (!id) {
+      return res.status(400).json({
+        success: false,
+        message: 'Income ID is required'
+      });
+    }
+
+    // Find and delete the income
+    const income = await Income.findByIdAndDelete(id);
+    
+    // If income not found
+    if (!income) {
+      return res.status(404).json({
+        success: false,
+        message: 'Income not found'
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      message: 'Income deleted successfully'
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: 'Error deleting income',
+      error: error.message
+    });
+  }
 }; 
