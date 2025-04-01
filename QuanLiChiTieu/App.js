@@ -5,10 +5,10 @@ import { ActivityIndicator, View } from 'react-native';
 
 import LoginScreen from './screens/Login';
 import HomeScreen from './screens/Home';
+import UpdateUserScreen from './screens/UpdateUser';
 import { AuthProvider, useAuth } from './context/AuthContext';
 
 const Stack = createNativeStackNavigator();
-
 
 function AppNavigator() {
   const { isLoggedIn, isLoading } = useAuth();
@@ -31,11 +31,27 @@ function AppNavigator() {
             options={{ headerShown: false }}
           />
         ) : (
-          <Stack.Screen 
-            name="Home" 
-            component={HomeScreen} 
-            options={{ headerShown: false }}
-          />
+          <>
+            <Stack.Screen 
+              name="Home" 
+              component={HomeScreen} 
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen 
+              name="UpdateUser" 
+              component={UpdateUserScreen} 
+              options={{ 
+                title: 'Cập Nhật Thông Tin',
+                headerStyle: {
+                  backgroundColor: '#1e88e5',
+                },
+                headerTintColor: '#fff',
+                headerTitleStyle: {
+                  fontWeight: 'bold',
+                },
+              }}
+            />
+          </>
         )}
       </Stack.Navigator>
     </NavigationContainer>
