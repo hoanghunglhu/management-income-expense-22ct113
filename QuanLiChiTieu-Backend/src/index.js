@@ -39,9 +39,9 @@ app.use((req, res) => {
 });
 
 // Connect to MongoDB
-mongoose.connect(process.env.MONGO_URI_LOCAL)
+mongoose.connect(process.env.MONGO_URI)
   .then(() => {
-    console.log('Connected to MongoDB');
+    console.log('Connected to MongoDB Atlas');
   })
   .catch((error) => {
     console.error('MongoDB connection error:', error);
