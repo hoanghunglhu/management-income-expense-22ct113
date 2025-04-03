@@ -56,7 +56,8 @@ exports.deleteIncome = async (req, res) => {
 
     res.status(200).json({
       success: true,
-      message: 'Income deleted successfully'
+      message: 'Income deleted successfully',
+      data: income
     });
   } catch (error) {
     res.status(500).json({
@@ -65,4 +66,4 @@ exports.deleteIncome = async (req, res) => {
       error: error.message
     });
   }
-}; 
+};
