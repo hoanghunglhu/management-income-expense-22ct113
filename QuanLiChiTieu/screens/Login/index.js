@@ -51,7 +51,12 @@ export default function LoginScreen({ navigation }) {
       <Text style={styles.title}>Đăng Nhập</Text>
 
       {message && (
-        <View style={[styles.messageBox, messageType === 'error' ? styles.errorBox : styles.successBox]}>
+        <View
+          style={[
+            styles.messageBox,
+            messageType === "error" ? styles.errorBox : styles.successBox,
+          ]}
+        >
           <Text style={styles.messageText}>{message}</Text>
         </View>
       )}
